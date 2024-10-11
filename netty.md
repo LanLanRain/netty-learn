@@ -73,10 +73,44 @@ Java NIO 提供了多种类型的缓冲区，每种类型都用于存储不同�
 - **Flip()**：将缓冲区从写模式切换到读模式，准备从缓冲区中读取数据。
 - **Clear()**：将缓冲区清空，重新进入写模式。
 - **Rewind()**：重置位置`Position`，允许重新读取缓冲区中已有的数据。
+- buffer中写入数据[写模式  创建一个bytebuffer ,clear(),compact()]
+```text
+  1. channel的read方法
+     channel.read(buffer)
+  2. buffer的put方法
+     buffer.put(byte)    buffer.put((byte)'a')..
+     buffer.put(byte[])
+```
+- 从buffer中读出数据
+```text
+1. channel的write方法
+  
+  2. buffer的get方法 //每调用一次get方法会影响，position的位置。
+  
+  3. rewind方法(手风琴)，可以将postion重置成0 ，用于复读数据。
+  
+  4. mark&reset方法，通过mark方法进行标记（position），通过reset方法跳回标记，从新执行.
+  
+  5. get(i) 方法，获取特定position上的数据，但是不会对position的位置产生影响。
+```
+
+![img.png](img/img-buffer.png)
+![img.png](img/截图%202024-10-11%2014-38-50.png)
+![img.png](img/截图%202024-10-11%2014-40-42.png)
+![img.png](img/截图%202024-10-11%2014-41-46.png)
+
+写入Buffer数据之前要设置写模式
+1. 写模式
+    1. 新创建的Buffer自动是写模式
+    2. 调用了clear,compact方法
+
+读取Buffer数据之前要设置读模式
+2. 读模式
+    1. 调用flip方法
 
 ---
-
 ### 三.NIO程序开发
+#### 3.1 第一个NIO程序分析
 ```java
 public class TestNIO1 {
     public static void main(String[] args) throws IOException {
@@ -107,4 +141,75 @@ public class TestNIO1 {
         }
     }
 }
+
+public class TestNIO2 {
+    public static void main(String[] args) {
+        FileChannel channel = null;
+        try {
+            channel = new RandomAccessFile("data1.txt", "rw").getChannel();
+            ByteBuffer buffer = ByteBuffer.allocate(15);
+            while (true) {
+                int read = channel.read(buffer);
+                if (read == -1) {
+                    break;
+                }
+                buffer.flip();
+                while (buffer.hasRemaining()) {
+                    byte b = buffer.get();
+                    log.info("(char)b = {}", b);
+                }
+                buffer.clear();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (channel != null) {
+                try {
+                    channel.close();
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        }
+    }
+}
+
+public class TestNIO3 {
+    public static void main(String[] args) {
+
+        try (FileChannel channel = FileChannel.open(Paths.get("data1.txt"), StandardOpenOption.READ)) {
+
+            ByteBuffer buffer = ByteBuffer.allocate(10);
+            while (true) {
+                int read = channel.read(buffer);
+                if (read == -1) break;
+
+                buffer.flip();
+                while (buffer.hasRemaining()) {
+                    byte b = buffer.get();
+                    System.out.println("(char)b = " + (char) b);
+                }
+
+                buffer.clear();
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+}
 ```
+
+#### 3.2 NIO开发的步骤总结
+```text
+1. 获取Channel 
+2. 创建Buffer
+3. 循环的从Channel中获取数据，读入到Buffer中。进行操作.
+    channel.read(buffer);
+
+    buffer.flip();//设置读模式
+    循环从buffer中获取数据。
+    buffer.get();
+    buffer.clear();//设置写模式
+```
+
