@@ -108,6 +108,48 @@ Java NIO 提供了多种类型的缓冲区，每种类型都用于存储不同�
 2. 读模式
     1. 调用flip方法
 
+#### 2.4 字符串&Buffer
+**字符串存储到Buffer中**
+```text
+ByteBuffer buffer = ByteBuffer.allocate(10);
+buffer.put("sunshuai".getBytes());
+
+buffer.flip();
+while (buffer.hasRemaining()) {
+  System.out.println("buffer.get() = " + (char)buffer.get());
+}
+buffer.clear();
+
+
+ByteBuffer buffer = Charset.forName("UTF-8").encode("Hello");
+
+1、encode方法自动 把字符串按照字符集编码后，存储在ByteBuffer.
+2、自动把ByteBuffer设置成读模式，且不能手工调用flip方法。
+
+ByteBuffer buffer = StandardCharsets.UTF_8.encode("Hello");
+
+while (buffer.hasRemaining()) {
+  System.out.println("buffer.get() = " + (char) buffer.get());
+}
+buffer.clear();
+1、encode方法自动 把字符串按照字符集编码后，存储在ByteBuffer.
+2、自动把ByteBuffer设置成读模式，且不能手工调用flip方法。
+  
+ByteBuffer buffer = ByteBuffer.wrap("Hello".getBytes());
+while (buffer.hasRemaining()) {
+  System.out.println("buffer.get() = " + (char) buffer.get());
+}
+buffer.clear();
+```
+**Buffer中的数据转换成字符串**
+```java
+ByteBuffer buffer = ByteBuffer.allocate(10);
+buffer.put("韩".getBytes());
+
+buffer.flip();
+CharBuffer result = StandardCharsets.UTF_8.decode(buffer);
+System.out.println("result.toString() = " + result.toString());
+```
 ---
 ### 三.NIO程序开发
 #### 3.1 第一个NIO程序分析
