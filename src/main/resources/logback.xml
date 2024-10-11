@@ -1,0 +1,23 @@
+<configuration>
+    <!-- 控制台输出配置 -->
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <!-- 日志格式化输出：
+                 %d{yyyy-MM-dd HH:mm:ss.SSS} 表示日期和时间
+                 [%thread] 表示线程名
+                 %-5level 表示日志级别，左对齐显示5个字符宽度
+                 %logger{50} 表示记录器名称，最多显示50个字符
+                 %msg 表示日志消息
+                 %n 是换行符 -->
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50} - %msg%n</pattern>
+        </encoder>
+    </appender>
+    <!-- 配置特定包(com.lb)的日志级别为DEBUG，并且不将日志传递给父记录器 -->
+    <logger name="com.lb" level="DEBUG" additivity="false">
+        <appender-ref ref="STDOUT"/>
+    </logger>
+    <!-- 配置根记录器的日志级别为DEBUG，并将日志输出到STDOUT -->
+    <root level="DEBUG">
+        <appender-ref ref="STDOUT"/>
+    </root>
+</configuration>

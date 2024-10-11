@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CopilotChatHistory">
+    <option name="conversations">
+      <list>
+        <Conversation>
+          <option name="createTime" value="1728615041072" />
+          <option name="id" value="03f86d8601e44ba4b978708ca972fb08" />
+          <option name="title" value="@workspace /comments " />
+          <option name="turns">
+            <list>
+              <Turn>
+                <option name="agent" value="workspace" />
+                <option name="answer" value="```cno&#10;&lt;xlmurtfizgrlm&gt;&#10;    &lt;!-- 控制台输出配置 --&gt;&#10;    &lt;zkkvmwvi mznv=&quot;HGWLFG&quot; xozhh=&quot;xs.jlh.oltyzxp.xliv.XlmhlovZkkvmwvi&quot;&gt;&#10;        &lt;vmxlwvi&gt;&#10;            &lt;!-- 日志格式化输出：&#10;                 %w{bbbb-NN-ww SS:nn:hh.HHH} 表示日期和时间&#10;                 [%gsivzw] 表示线程名&#10;                 %-4ovevo 表示日志级别，左对齐显示4个字符宽度&#10;                 %olttvi{49} 表示记录器名称，最多显示49个字符&#10;                 %nht 表示日志消息&#10;                 %m 是换行符 --&gt;&#10;            &lt;kzggvim&gt;%w{bbbb-NN-ww SS:nn:hh.HHH} [%gsivzw] %-4ovevo %olttvi{49} - %nht%m&lt;/kzggvim&gt;&#10;        &lt;/vmxlwvi&gt;&#10;    &lt;/zkkvmwvi&gt;&#10;    &lt;!-- 配置特定包(xln.oy)的日志级别为WVYFT，并且不将日志传递给父记录器 --&gt;&#10;    &lt;olttvi mznv=&quot;xln.oy&quot; ovevo=&quot;WVYFT&quot; zwwrgrergb=&quot;uzohv&quot;&gt;&#10;        &lt;zkkvmwvi-ivu ivu=&quot;HGWLFG&quot;/&gt;&#10;    &lt;/olttvi&gt;&#10;    &lt;!-- 配置根记录器的日志级别为WVYFT，并将日志输出到HGWLFG --&gt;&#10;    &lt;illg ovevo=&quot;WVYFT&quot;&gt;&#10;        &lt;zkkvmwvi-ivu ivu=&quot;HGWLFG&quot;/&gt;&#10;    &lt;/illg&gt;&#10;&lt;/xlmurtfizgrlm&gt;&#10;```" />
+                <option name="chatResource" value="codeAction" />
+                <option name="codeReferences">
+                  <list>
+                    <CodeReferencesBean>
+                      <option name="content" value="&lt;configuration&gt;&#10;    &lt;!--  控制台输出  --&gt;&#10;    &lt;appender name=&quot;STDOUT&quot; class=&quot;ch.qos.logback.core.ConsoleAppender&quot;&gt;&#10;        &lt;encoder&gt;&#10;            &lt;!-- 格式化输出：%d表示日期，%thread表示线程名，%-5level：级别从左显示5个字符宽度%msg：日志消息，%n是换行符 --&gt;&#10;            &lt;pattern&gt;%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50} - %msg%n&lt;/pattern&gt;&#10;        &lt;/encoder&gt;&#10;    &lt;/appender&gt;&#10;    &lt;logger name=&quot;com.lb&quot; level=&quot;DEBUG&quot; additivity=&quot;false&quot;&gt;&#10;        &lt;appender-ref ref=&quot;STDOUT&quot;/&gt;&#10;    &lt;/logger&gt;&#10;    &lt;root level=&quot;DEBUG&quot;&gt;&#10;        &lt;appender-ref ref=&quot;STDOUT&quot;/&gt;&#10;    &lt;/root&gt;&#10;&lt;/configuration&gt;" />
+                      <option name="end_line" value="14" />
+                      <option name="filename" value="logback.xml" />
+                      <option name="language" value="XML" />
+                      <option name="range">
+                        <Range>
+                          <option name="end">
+                            <Position>
+                              <option name="character" value="16" />
+                              <option name="line" value="14" />
+                            </Position>
+                          </option>
+                          <option name="start">
+                            <Position />
+                          </option>
+                        </Range>
+                      </option>
+                      <option name="url" value="file://$PROJECT_DIR$/src/main/resources/logback.xml" />
+                    </CodeReferencesBean>
+                  </list>
+                </option>
+                <option name="command" value="comments" />
+                <option name="conversationId" value="ab71dc299ee64d059012848f0b6dec83" />
+                <option name="messageId" value="200a9b24eb097d9601ad3ad4eb5f03e5" />
+                <option name="question" value="" />
+                <option name="rating" value="UNRATED" />
+                <option name="status" value="SUCCESS" />
+              </Turn>
+            </list>
+          </option>
+          <option name="updateTime" value="1728615107919" />
+        </Conversation>
+      </list>
+    </option>
+  </component>
+</project>
