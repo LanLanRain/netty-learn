@@ -4,7 +4,7 @@ import java.nio.ByteBuffer;
 import java.nio.CharBuffer;
 import java.nio.charset.StandardCharsets;
 
-public class Test09 {
+public class TestNIO9 {
     public static void main(String[] args) {
         ByteBuffer buffer = ByteBuffer.allocate(10);
         buffer.put("汉武帝".getBytes());

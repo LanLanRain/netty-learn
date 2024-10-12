@@ -255,3 +255,32 @@ public class TestNIO3 {
     buffer.clear();//设置写模式
 ```
 
+### 四. 半包和粘包
+```java
+public class TestNIO10 {
+    public static void main(String[] args) {
+        ByteBuffer buffer = ByteBuffer.allocate(50);
+        buffer.put("Hi Jerry\nTom love y".getBytes());
+        doLineSplit(buffer);
+        buffer.put("ou\nDo you like him?\n".getBytes());
+        doLineSplit(buffer);
+    }
+
+    private static void doLineSplit(ByteBuffer buffer) {
+        buffer.flip();
+        for (int i = 0; i < buffer.limit(); i++) {
+            if (buffer.get(i) == '\n') {
+                int length = i + 1 - buffer.position();
+                ByteBuffer target = ByteBuffer.allocate(length);
+                for (int j = 0; j < length; j++) {
+                    target.put(buffer.get());
+                }
+
+                target.flip();
+                log.info("StandardCharsets.UTF_8.decode(target) = {}", StandardCharsets.UTF_8.decode(target));
+            }
+        }
+        buffer.compact();
+    }
+}
+```
