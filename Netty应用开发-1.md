@@ -607,7 +607,7 @@ Seletor循环监听事件的方式 解决死循环空转的问题。
     }
 }
 ~~~
-
+![img-20241120194947252.png](markdown-images/img-20241120194947252.png)
 ~~~java
 iterator.remove()
 把用过的SelectionKey从SeletionKeys集合中剔除
